@@ -1,13 +1,33 @@
-import 'package:task_manager/services/storage.dart';
+import 'dart:convert';
+import 'dart:io';
 
-class JsonStorage implements Storage{
-  @override
-  void save(){
-    print("Données sauvegardées");
+class JsonStorage {
+
+  final String fileName = "tasks.json";
+
+
+  void save(List<Map<String, dynamic>> tasks) {
+
+    File file = File(fileName);
+
+    file.writeAsStringSync(
+      jsonEncode(tasks),
+    );
   }
 
-  @override
-  void load (){
-    print("Données chargées");
+  List<Map<String, dynamic>> load() {
+
+    File file = File(fileName);
+
+
+    if (!file.existsSync()) {
+      return [];
+    }
+
+    String content = file.readAsStringSync();
+
+    List data = jsonDecode(content);
+
+    return List<Map<String, dynamic>>.from(data);
   }
 }

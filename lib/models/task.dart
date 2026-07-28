@@ -22,4 +22,6 @@ abstract class Task{
  }
 
  String getDetails ();
+
+ Map<String, dynamic > toJson();
 }
