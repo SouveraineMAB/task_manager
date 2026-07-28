@@ -1,4 +1,4 @@
-import 'package:task_manager/exception.dart/task_exception.dart';
+import 'package:task_manager/exceptions/task_exception.dart';
 import 'package:task_manager/repositories/repository.dart';
 import 'package:task_manager/models/task.dart';
 
