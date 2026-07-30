@@ -28,7 +28,9 @@ class TaskRepository implements Repository<Task>{
       }
     }
 
-    return null;
+    throw TaskException(
+
+    "La tâche avec l'id $id n'existe pas",);
   }
 
   @override
