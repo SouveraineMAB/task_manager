@@ -4,8 +4,9 @@ import 'package:task_manager/models/urgent_task.dart';
 import 'package:task_manager/models/priority.dart';
 import 'package:task_manager/repositories/task_repository.dart';
 
-void main() {
+Future <void > main() async{
   TaskRepository repository = TaskRepository();
+  await repository.initialize();
   bool running = true;
 
   while (running) {

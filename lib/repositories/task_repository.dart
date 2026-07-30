@@ -8,6 +8,19 @@ import 'package:task_manager/services/json_storage.dart';
 class TaskRepository implements Repository<Task> {
   final List<Task> _tasks = [];
   final JsonStorage storage = JsonStorage();
+
+  Future<void> initialize() async {
+
+  final data = await storage.load();
+  for (var json in data) {
+
+    _tasks.add(
+      UrgentTask.fromJson(json),
+    );
+
+  }
+
+}
  
   @override
   void add(Task item) {
