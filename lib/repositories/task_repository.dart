@@ -39,7 +39,6 @@ class TaskRepository implements Repository<Task>{
       _tasks.map((task) => task.toJson()).toList(),
     );
 
-
     storage.save(
       _tasks.map((task) =>task.toJson()).toList(),
     );
