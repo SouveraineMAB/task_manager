@@ -53,6 +53,11 @@ void ajouterTache(TaskRepository repository) {
 
   stdout.write("Titre de la tâche : ");
   String title = stdin.readLineSync()!;
+
+    if (title.trim().isEmpty) {
+    print("Le titre ne peut pas être vide !");
+    return;
+  }
   print("\nChoisir la priorité :");
   print("1. Faible");
   print("2. Moyenne");
@@ -116,8 +121,12 @@ tasks.sort(
 // Terminer une tâche
 void terminerTache(TaskRepository repository) {
   stdout.write("ID de la tâche à terminer : ");
+ int? id = int.tryParse(stdin.readLineSync()!);
 
-  int id = int.parse(stdin.readLineSync()!);
+  if (id == null) {
+    print("ID invalide !");
+    return;
+  }
 
   var task = repository.findById(id);
 
@@ -132,7 +141,12 @@ void terminerTache(TaskRepository repository) {
 // Supprimer une tâche
 void supprimerTache(TaskRepository repository) {
   stdout.write("ID de la tâche à supprimer : ");
-  int id = int.parse(stdin.readLineSync()!);
+  int? id = int.tryParse(stdin.readLineSync()!);
+
+  if (id == null) {
+    print("ID invalide !");
+    return;
+  }
   repository.delete(id);
   print("Tâche supprimée !");
 }
