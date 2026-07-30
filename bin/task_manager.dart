@@ -95,7 +95,10 @@ void ajouterTache(TaskRepository repository) {
 
 // Afficher toutes les tâches
 void afficherTaches(TaskRepository repository) {
-  List tasks = repository.getAll();
+ List tasks = repository.getAll();
+tasks.sort(
+  (a, b) => b.priority.index.compareTo(a.priority.index),
+);
 
   if (tasks.isEmpty) {
     print("Aucune tâche disponible.");
