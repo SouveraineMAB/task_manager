@@ -1,95 +1,25 @@
-Task Manager CLI - Dart
+# Task Manager CLI
 
-Application en ligne de commande de gestion de tâches développée en Dart pur.
+Task Manager CLI est une application en ligne de commande développée en Dart permettant de gérer des tâches.
 
-Description
+#Fonctionnalités
 
-Task Manager CLI permet de gérer des tâches depuis un terminal.
-L’application utilise les concepts avancés de Dart comme :
+- Ajouter une tâche urgente
+- Afficher la liste des tâches
+- Marquer une tâche comme terminée
+- Supprimer une tâche
+- Sauvegarder les données au format JSON
 
-* Les classes abstraites
-* L’héritage (Task → UrgentTask)
-* Les interfaces
-* Les génériques (Repository<T>)
-* Les exceptions personnalisées
-* Les tests unitaires
+# Structure du projet
 
-Fonctionnalités
+- `models` : contient les classes représentant les tâches et les enums.
+- `repositories` : gère la manipulation des tâches.
+- `services` : contient le service de stockage JSON.
+- `exceptions` : contient les exceptions personnalisées.
 
-* Ajouter une tâche
-* Définir une priorité (low, medium, high)
-* Ajouter une date limite optionnelle
-* Afficher toutes les tâches
-* Marquer une tâche comme terminée
-* Supprimer une tâche
-* Sauvegarder les données localement en JSON
+# Installation
 
-Structure du projet
+Cloner le projet puis installer les dépendances :
 
-lib/
- ├── models/
- │    ├── task.dart
- │    ├── urgent_task.dart
- │    ├── priority.dart
- │    └── task_status.dart
- │
- ├── repositories/
- │    ├── repository.dart
- │    └── task_repository.dart
- │
- ├── services/
- │    ├── storage.dart
- │    └── json_storage.dart
- │
- └── exceptions/
-      └── task_exception.dart
-bin/
- └── task_manager.dart
-test/
- └── task_manager_test.dart
-
-Installation
-
-Cloner le projet :
-
-git clone https://github.com/votre-utilisateur/task_manager_dart.git
-
-Entrer dans le dossier :
-
-cd task_manager_dart
-
-Installer les dépendances :
-
+```bash
 dart pub get
-
-Lancer l’application
-
-Pour démarrer l’application CLI :
-
-dart run
-
-Le menu principal permet de :
-
-1. Ajouter une tâche
-2. Afficher les tâches
-3. Terminer une tâche
-4. Supprimer une tâche
-5. Quitter
-
-Lancer les tests
-
-Pour exécuter les tests unitaires :
-
-dart test
-
-Les tests vérifient le bon fonctionnement des différentes fonctionnalités de l’application.
-
-Technologies utilisées
-
-* Dart
-* Package test
-* JSON pour la persistance des données
-
-Auteur
-
-Projet réalisé dans le cadre d’une évaluation Dart CLI.
