@@ -84,6 +84,62 @@ void main() {
       );
 
     });
+    test("Conversion d'une tâche en JSON", () {
+
+    UrgentTask task = UrgentTask(
+      5,
+      "Tester JSON",
+      Priority.medium,
+      DateTime(2026, 8, 5),
+      "Test JSON",
+    );
+
+    Map<String, dynamic> json = task.toJson();
+
+    expect(json["title"], "Tester JSON");
+    expect(json["priority"], "medium");
+    expect(json["reason"], "Test JSON");
+
+});
+
+test("Trouver une tâche par son identifiant", () {
+  TaskRepository repository = TaskRepository();
+  UrgentTask task = UrgentTask(
+    6,
+    "Recherche",
+    Priority.low,
+    null,
+    "Test recherche",
+  );
+
+  repository.add(task);
+  var result = repository.findById(6);
+  expect(result.title, "Recherche");
+
+});
+
+test("Gestion des différentes priorités", () {
+
+  UrgentTask lowTask = UrgentTask(
+    7,
+    "Tâche faible",
+    Priority.low,
+    null,
+    "Test",
+  );
+
+  UrgentTask highTask = UrgentTask(
+    8,
+    "Tâche urgente",
+    Priority.high,
+    null,
+    "Test",
+  );
+
+  expect(lowTask.priority, Priority.low);
+  expect(highTask.priority, Priority.high);
+
+});
 
   });
 
