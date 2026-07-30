@@ -1,7 +1,9 @@
 import 'package:task_manager/models/priority.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/models/task_status.dart';
 
 class UrgentTask extends Task {
+
   String reason;
   UrgentTask(
     int id,
@@ -30,6 +32,29 @@ class UrgentTask extends Task {
 
   }
 
+  factory UrgentTask.fromJson(Map<String, dynamic> json) {
+
+    UrgentTask task = UrgentTask(
+      json["id"],
+      json["title"],
+      Priority.values.firstWhere(
+        (element) => element.name == json["priority"],
+      ),
+      json["dueDate"] != null
+          ? DateTime.parse(json["dueDate"])
+          : null,
+      json["reason"],
+    );
+
+    task.status = TaskStatus.values.firstWhere(
+      (element) => element.name == json["status"],
+      orElse: () => TaskStatus.pending,
+    );
+
+    return task;
+
+  }
+
   @override
   String getDetails() {
 
@@ -43,19 +68,5 @@ Raison : $reason
 """;
 
   }
-factory UrgentTask.fromJson(Map<String, dynamic> json) {
 
-  return UrgentTask(
-    json["id"],
-    json["title"],
-    Priority.values.firstWhere(
-      (element) => element.name == json["priority"],
-    ),
-    json["dueDate"] != null
-        ? DateTime.parse(json["dueDate"])
-        : null,
-    json["reason"],
-  );
-
-}
 }
