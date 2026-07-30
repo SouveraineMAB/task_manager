@@ -6,7 +6,6 @@ import 'package:task_manager/repositories/task_repository.dart';
 
 void main() {
   TaskRepository repository = TaskRepository();
-
   bool running = true;
 
   while (running) {
@@ -48,7 +47,6 @@ void main() {
   }
 }
 
-
 // Ajouter une tâche
 void ajouterTache(TaskRepository repository) {
   stdout.write("Titre de la tâche : ");
@@ -67,7 +65,6 @@ void ajouterTache(TaskRepository repository) {
   print("Tâche ajoutée avec succès !");
 }
 
-
 // Afficher toutes les tâches
 void afficherTaches(TaskRepository repository) {
   List tasks = repository.getAll();
@@ -85,7 +82,6 @@ void afficherTaches(TaskRepository repository) {
   }
 }
 
-
 // Terminer une tâche
 void terminerTache(TaskRepository repository) {
   stdout.write("ID de la tâche à terminer : ");
@@ -102,14 +98,10 @@ void terminerTache(TaskRepository repository) {
   }
 }
 
-
 // Supprimer une tâche
 void supprimerTache(TaskRepository repository) {
   stdout.write("ID de la tâche à supprimer : ");
-
   int id = int.parse(stdin.readLineSync()!);
-
   repository.delete(id);
-
   print("Tâche supprimée !");
 }
