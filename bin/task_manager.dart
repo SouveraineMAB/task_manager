@@ -50,13 +50,40 @@ Future <void > main() async{
 
 // Ajouter une tâche
 void ajouterTache(TaskRepository repository) {
+
   stdout.write("Titre de la tâche : ");
   String title = stdin.readLineSync()!;
+  print("\nChoisir la priorité :");
+  print("1. Faible");
+  print("2. Moyenne");
+  print("3. Haute");
+  stdout.write("Choix : ");
+  String? choix = stdin.readLineSync();
+  Priority priority;
+
+  switch (choix) {
+
+    case "1":
+      priority = Priority.low;
+      break;
+
+    case "2":
+      priority = Priority.medium;
+      break;
+
+    case "3":
+      priority = Priority.high;
+      break;
+
+    default:
+      priority = Priority.medium;
+      print("Choix invalide, priorité moyenne appliquée.");
+  }
 
   UrgentTask task = UrgentTask(
     DateTime.now().millisecondsSinceEpoch,
     title,
-    Priority.high,
+    priority,
     null,
     "Tâche urgente",
   );
