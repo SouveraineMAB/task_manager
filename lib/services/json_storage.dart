@@ -1,13 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'storage.dart';
 
-
 class JsonStorage implements Storage<Map<String, dynamic>> {
-
   final String fileName = "tasks.json";
-
 
   @override
   Future<void> save(List<Map<String, dynamic>> items) async {
@@ -25,14 +21,12 @@ class JsonStorage implements Storage<Map<String, dynamic>> {
 
     final file = File(fileName);
 
-
     if (!await file.exists()) {
       return [];
     }
 
 
     final content = await file.readAsString();
-
 
     final List<dynamic> data = jsonDecode(content);
 
