@@ -43,5 +43,19 @@ Raison : $reason
 """;
 
   }
+factory UrgentTask.fromJson(Map<String, dynamic> json) {
 
+  return UrgentTask(
+    json["id"],
+    json["title"],
+    Priority.values.firstWhere(
+      (element) => element.name == json["priority"],
+    ),
+    json["dueDate"] != null
+        ? DateTime.parse(json["dueDate"])
+        : null,
+    json["reason"],
+  );
+
+}
 }
