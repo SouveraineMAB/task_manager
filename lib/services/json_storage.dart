@@ -1,33 +1,44 @@
 import 'dart:convert';
 import 'dart:io';
 
-class JsonStorage {
+import 'storage.dart';
+
+
+class JsonStorage implements Storage<Map<String, dynamic>> {
 
   final String fileName = "tasks.json";
 
 
-  void save(List<Map<String, dynamic>> tasks) {
+  @override
+  Future<void> save(List<Map<String, dynamic>> items) async {
 
-    File file = File(fileName);
+    final file = File(fileName);
 
-    file.writeAsStringSync(
-      jsonEncode(tasks),
+    await file.writeAsString(
+      jsonEncode(items),
     );
   }
 
-  List<Map<String, dynamic>> load() {
 
-    File file = File(fileName);
+  @override
+  Future<List<Map<String, dynamic>>> load() async {
+
+    final file = File(fileName);
 
 
-    if (!file.existsSync()) {
+    if (!await file.exists()) {
       return [];
     }
 
-    String content = file.readAsStringSync();
 
-    List data = jsonDecode(content);
+    final content = await file.readAsString();
 
-    return List<Map<String, dynamic>>.from(data);
+
+    final List<dynamic> data = jsonDecode(content);
+
+
+    return data
+        .map((item) => Map<String, dynamic>.from(item))
+        .toList();
   }
 }
